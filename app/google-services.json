@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "705867029638",
+    "firebase_url": "https://doctor-77acc-default-rtdb.firebaseio.com",
+    "project_id": "doctor-77acc",
+    "storage_bucket": "doctor-77acc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:705867029638:android:fd3f6e68588067fda5c507",
+        "android_client_info": {
+          "package_name": "com.example.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "705867029638-ukbedudqbq7fbbv1tuob58bg1hsiame0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCBO9uz3gAvgVwrH-RW65n8xYrt8foEItQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "705867029638-ukbedudqbq7fbbv1tuob58bg1hsiame0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:705867029638:android:425971872b3c6b24a5c507",
+        "android_client_info": {
+          "package_name": "com.example.myapplication1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "705867029638-ukbedudqbq7fbbv1tuob58bg1hsiame0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCBO9uz3gAvgVwrH-RW65n8xYrt8foEItQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "705867029638-ukbedudqbq7fbbv1tuob58bg1hsiame0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

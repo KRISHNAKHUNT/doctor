@@ -1,0 +1,19 @@
+{
+  "doctors": {
+    "dr1": {
+      "email": "skothari902@rku.ac.in",
+      "name": "sakshi",
+      "password": "Kri@1423",
+      "phone": 9925657357,
+      "username": "skothari902"
+    },
+    "dr2": {
+      "email": "kkhunt288@rku.ac.in ",
+      "id": "dr2",
+      "name": "Krishna",
+      "password": "Kri@1423",
+      "phone": 7573969733,
+      "username": "kkhunt288"
+    }
+  }
+}

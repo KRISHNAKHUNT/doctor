@@ -9,8 +9,10 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -18,10 +20,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-public class login extends AppCompatActivity {
+public class login<mAuth> extends AppCompatActivity {
     TextInputLayout loginUsername, loginPassword;
     Button loginBtn;
-    TextView loginToReg;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,8 +35,8 @@ public class login extends AppCompatActivity {
         loginUsername = findViewById(R.id.username);
         loginPassword = findViewById(R.id.password);
         loginBtn = findViewById(R.id.signinbtn);
-        loginToReg = findViewById(R.id.dontsignup);
     }
+
     private Boolean validateUsername() {
         String val = loginUsername.getEditText().getText().toString();
 
@@ -77,14 +79,48 @@ public class login extends AppCompatActivity {
         String userEnteredUsername = loginUsername.getEditText().getText().toString().trim();
         String userEnteredPassword = loginPassword.getEditText().getText().toString().trim();
 
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("users");
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://doctor-77acc-default-rtdb.firebaseio.com/");
 
-        Query checkUser = reference.orderByChild("username").equalTo(userEnteredUsername);
+        reference.child("doctors").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.hasChild(userEnteredUsername)) {
+                    String passwordFromDB = snapshot.child(userEnteredUsername).child("password").getValue(String.class);
+                    if (passwordFromDB.equals(userEnteredPassword)) {
+                        Toast.makeText(login.this, "Successfully Logged In", Toast.LENGTH_SHORT).show();
+                        Intent i= new Intent(login.this, register.class);
+                        String idFromDB = snapshot.child(userEnteredUsername).child("id").getValue(String.class);
+                        String emailFromDB = snapshot.child(userEnteredUsername).child("email").getValue(String.class);
+                        i.putExtra("email", emailFromDB);
+                        i.putExtra("id",idFromDB);
+                        startActivity(i);
+                        finish();
+                    } else {
+                        loginPassword.setError("Wrong Password.");
+                        loginPassword.requestFocus();
+                    }
+                }
+                    else{
+                        loginUsername.setError("No such User exist");
+                        loginUsername.requestFocus();
+                    }
+                }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+        /*Query checkUser = reference.orderByChild("username").equalTo(userEnteredUsername);
 
         checkUser.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.exists()){
+                String usernameFromDB = snapshot.child(userEnteredUsername).child("username").getValue(String.class);
+
+                if(usernameFromDB.equals(userEnteredUsername)){
 
                     loginUsername.setError(null);
                     loginUsername.setErrorEnabled(false);
@@ -93,24 +129,26 @@ public class login extends AppCompatActivity {
 
                     if (passwordFromDB.equals(userEnteredPassword)){
 
+                        Intent i = new Intent(getApplicationContext(),register.class);
+                        startActivity(i);
                         loginUsername.setError(null);
                         loginUsername.setErrorEnabled(false);
 
-                        String nameFromDB = snapshot.child(userEnteredUsername).child("name").getValue(String.class);
+                        /*String nameFromDB = snapshot.child(userEnteredUsername).child("name").getValue(String.class);
                         String usernameFromDB = snapshot.child(userEnteredUsername).child("username").getValue(String.class);
-                        String phonenumberFromDB = snapshot.child(userEnteredUsername).child("phonenumber").getValue(String.class);
+                        String phonenumberFromDB = snapshot.child(userEnteredUsername).child("phone").getValue(String.class);
                         String emailFromDB = snapshot.child(userEnteredUsername).child("email").getValue(String.class);
 
-                        /*Intent i = new Intent(getApplicationContext(),homepage.class);
+                        Intent i = new Intent(getApplicationContext(),register.class);
 
-                        i.putExtra("name", nameFromDB);
-                        i.putExtra("username", usernameFromDB);
-                        i.putExtra("phonenumber", phonenumberFromDB);
+                        //i.putExtra("name", nameFromDB);
+                        //i.putExtra("username", usernameFromDB);
+                        //i.putExtra("phone", phonenumberFromDB);
                         i.putExtra("email", emailFromDB);
-                        i.putExtra("password", passwordFromDB);
+                        //i.putExtra("password", passwordFromDB);
 
                         startActivity(i);
-                        finish();*/
+                        finish();
                     }
                     else {
                         loginPassword.setError("Wrong Password.");
@@ -127,16 +165,10 @@ public class login extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
-        });
-    }
+        }); */
 
     public void forgotpwd(View view){
         Intent i = new Intent(login.this, forgotpassword.class);
-        startActivity(i);
-    }
-
-    public void accsignup(View view){
-        Intent i = new Intent(login.this, register.class);
         startActivity(i);
     }
 }
