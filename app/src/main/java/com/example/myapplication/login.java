@@ -101,7 +101,7 @@ public class login extends AppCompatActivity {
                         String phonenumberFromDB = snapshot.child(userEnteredUsername).child("phonenumber").getValue(String.class);
                         String emailFromDB = snapshot.child(userEnteredUsername).child("email").getValue(String.class);
 
-                        Intent i = new Intent(getApplicationContext(),homepage.class);
+                        /*Intent i = new Intent(getApplicationContext(),homepage.class);
 
                         i.putExtra("name", nameFromDB);
                         i.putExtra("username", usernameFromDB);
@@ -110,7 +110,7 @@ public class login extends AppCompatActivity {
                         i.putExtra("password", passwordFromDB);
 
                         startActivity(i);
-                        finish();
+                        finish();*/
                     }
                     else {
                         loginPassword.setError("Wrong Password.");
