@@ -88,7 +88,7 @@ public class login<mAuth> extends AppCompatActivity {
                     String passwordFromDB = snapshot.child(userEnteredUsername).child("password").getValue(String.class);
                     if (passwordFromDB.equals(userEnteredPassword)) {
                         Toast.makeText(login.this, "Successfully Logged In", Toast.LENGTH_SHORT).show();
-                        Intent i= new Intent(login.this, register.class);
+                        Intent i= new Intent(login.this, MainActivity.class);
                         String idFromDB = snapshot.child(userEnteredUsername).child("id").getValue(String.class);
                         String emailFromDB = snapshot.child(userEnteredUsername).child("email").getValue(String.class);
                         i.putExtra("email", emailFromDB);
@@ -101,7 +101,7 @@ public class login<mAuth> extends AppCompatActivity {
                     }
                 }
                     else{
-                        loginUsername.setError("No such User exist");
+                        loginUsername.setError("Username is Incorrect");
                         loginUsername.requestFocus();
                     }
                 }

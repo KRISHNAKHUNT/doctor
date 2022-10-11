@@ -1,4 +1,37 @@
 {
+  "appointments ": {
+    "dr1": {
+      "10-27-2022": {
+        "9-10": {
+          "date": "10-27-2022",
+          "email": "kkhunt288@rku.ac.in ",
+          "name": "Krishna",
+          "phone": 7573969733,
+          "time": "9-10"
+        }
+      },
+      "10-7-2022": {
+        "10-11": {
+          "date": "10-7-2022",
+          "email": "skothari902@rku.ac.in",
+          "name": "Sakshi",
+          "phone": 9925657357,
+          "time": "10-11"
+        }
+      }
+    },
+    "dr2": {
+      "9-9-2022": {
+        "9-10": {
+          "date": "9-9-2022",
+          "mail": "kjkhunt14@gmail.com ",
+          "name": "Meena",
+          "phone": 7573969733,
+          "time": "9-10"
+        }
+      }
+    }
+  },
   "doctors": {
     "dr1": {
       "email": "skothari902@rku.ac.in",
